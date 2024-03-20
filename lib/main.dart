@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signin.dart'; // Import the Sign In page
+import 'register.dart';
 
 
 void main() {
@@ -131,7 +132,7 @@ class CardioVistaHomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push( // Navigate to Sign Up page
                     context,
-                    MaterialPageRoute(builder: (context) => SignIn()),
+                    MaterialPageRoute(builder: (context) => RegisterPage()),
                   );
                 },
               ),
