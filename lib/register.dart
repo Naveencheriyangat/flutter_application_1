@@ -12,7 +12,7 @@ class RegisterPage extends StatelessWidget {
     return MaterialApp(
       title: 'Cardio Vista',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.red//red,
         scaffoldBackgroundColor: Color.fromARGB(255, 240, 251, 255),
       ),
       home: const Login(),
