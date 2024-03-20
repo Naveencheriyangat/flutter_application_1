@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'signin.dart';
 
-void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+void main() => runApp(const RegisterPage());
+
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +109,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   child: TextField(
                     decoration: InputDecoration(
                       labelText: 'First Name',
+                       labelStyle: TextStyle(color: Color(0xFFAA1F24)),
                       contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                       border: InputBorder.none,
                     ),
@@ -121,6 +124,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   child: TextField(
                     decoration: InputDecoration(
                       labelText: 'Last Name',
+                       labelStyle: TextStyle(color: Color(0xFFAA1F24)),
                       contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                       border: InputBorder.none,
                     ),
@@ -135,6 +139,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   child: TextField(
                     decoration: InputDecoration(
                       labelText: 'Email',
+                       labelStyle: TextStyle(color: Color(0xFFAA1F24)),
                       contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                       border: InputBorder.none,
                     ),
@@ -149,6 +154,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   child: TextField(
                     decoration: InputDecoration(
                       labelText: 'Password',
+                       labelStyle: TextStyle(color: Color(0xFFAA1F24)),
                       contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                       border: InputBorder.none,
                     ),
@@ -164,6 +170,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   child: TextField(
                     decoration: InputDecoration(
                       labelText: 'Confirm Password',
+                       labelStyle: TextStyle(color: Color(0xFFAA1F24)),
                       contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                       border: InputBorder.none,
                     ),
@@ -193,7 +200,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Login()),
+                          MaterialPageRoute(builder: (context) => SignIn()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
