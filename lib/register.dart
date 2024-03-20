@@ -79,7 +79,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
           Text(
             'SIGN UP',
             style: TextStyle(
-              color: Colors.red,
+              color:Color(0xFFAA1F24),
               fontSize: 24,
               fontWeight: FontWeight.bold,
               shadows: [
