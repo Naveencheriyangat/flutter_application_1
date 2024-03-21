@@ -150,7 +150,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   ),
                   child: TextField(
                     decoration: InputDecoration(
-                      labelText: 'Specialization',?//specialization,
+                      labelText: 'Specialization',
                        labelStyle: TextStyle(color: Color(0xFFAA1F24)),
                       contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                       border: InputBorder.none,
