@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/patient.dart'; // Import the new Dart file
 import 'package:flutter_application_1/list.dart';
+import 'profile.dart';
 
 void main() {
   runApp(CardioVistaApp());
@@ -196,11 +197,17 @@ class CardioVistaHomePage extends StatelessWidget {
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.home, color: Colors.white),
-                onPressed: () {},
+                onPressed: () {
+                },
               ),
               IconButton(
                 icon: Icon(Icons.person, color: Colors.white),
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfilePage()),
+                        );
+                },
               ),
             ],
           ),
