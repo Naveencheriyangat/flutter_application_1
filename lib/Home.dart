@@ -198,6 +198,10 @@ class CardioVistaHomePage extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.home, color: Colors.white),
                 onPressed: () {
+                   Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Login()),
+                        );
                 },
               ),
               IconButton(
