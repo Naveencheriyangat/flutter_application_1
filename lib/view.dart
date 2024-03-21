@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: UserProfilePage(),
-  ));
-}
+class MyProfilePage extends StatelessWidget {
+  final String name;
 
-class UserProfilePage extends StatelessWidget {
+  MyProfilePage({required this.name});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,176 +16,128 @@ class UserProfilePage extends StatelessWidget {
             Text('Vista', style: TextStyle(color: Color(0xFFAA1F24))),
           ],
         ),
+        elevation: 5,
+        shadowColor: Colors.black,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'SIGN UP',
+              'My Profile',
               style: TextStyle(
-                color: Color(0xFFAA1F24),
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                shadows: [
-                  Shadow(
-                    color: Colors.black.withOpacity(0.5),
-                    offset: Offset(2, 2),
-                    blurRadius: 2,
-                  ),
-                ],
+                color: Color(0xFFAA1F24),
               ),
             ),
-            SizedBox(height: 16),
-            Text('Don\'t have an account? Create your account, it takes less than a minute'),
-            SizedBox(height: 16),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFFAA1F24)),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: 'First Name',
-                        labelStyle: TextStyle(color: Color(0xFFAA1F24)),
-                        contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFFAA1F24)),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Last Name',
-                        labelStyle: TextStyle(color: Color(0xFFAA1F24)),
-                        contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFFAA1F24)),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: TextStyle(color: Color(0xFFAA1F24)),
-                        contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFFAA1F24)),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: TextStyle(color: Color(0xFFAA1F24)),
-                        contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                        border: InputBorder.none,
-                      ),
-                      obscureText: true,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFFAA1F24)),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Confirm Password',
-                        labelStyle: TextStyle(color: Color(0xFFAA1F24)),
-                        contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                        border: InputBorder.none,
-                      ),
-                      obscureText: true,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: true, // Replace with your logic for accepting terms
-                        onChanged: (bool? value) {
-                          // Handle checkbox state
-                        },
-                      ),
-                      Text('I accept the terms and privacy policy'),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Handle the registration process
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFAA1F24),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(color: Color(0xFFAA1F24)),
-                        ),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(12.0),
-                        child: Text(
-                          'Register',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Navigate to the login page
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(color: Color(0xFFAA1F24)),
-                        ),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(12.0),
-                        child: Text(
-                          'Back to Login',
-                          style: TextStyle(color: Color(0xFFAA1F24)),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+            SizedBox(height: 20),
+            CircleAvatar(
+              radius: 60,
+              backgroundColor: Colors.grey[300], // Placeholder background color
+              child: Icon(
+                Icons.person,
+                size: 60,
+                color: Colors.grey, // Placeholder icon color
               ),
             ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  name,
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color:  Color(0xFFAA1F24),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Email', // Placeholder for email, you need to replace this with the actual email
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            SizedBox(height: 20),
+            ProfileInfoField(label: 'Age', value: '22'),
+            ProfileInfoField(label: 'Weight', value: '0'),
+            ProfileInfoField(label: 'Height', value: '0'),
+            ProfileInfoField(label: 'Hyper tension/BP', value: 'No'),
+            ProfileInfoField(label: 'Sex', value: 'Female'),
+            ProfileInfoField(label: 'Chest pain', value: 'No'),
+            ProfileInfoField(label: 'Surgery', value: 'No'),
+            ProfileInfoField(label: 'Diseases', value: 'No'),
           ],
         ),
+      ),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
+        ),
+        child: BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          color: Colors.black,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              IconButton(
+                icon: Icon(Icons.home, color: Colors.white),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: Icon(Icons.person, color: Colors.white),
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileInfoField extends StatelessWidget {
+  final String label;
+  final String value;
+
+  ProfileInfoField({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      padding: EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey,
+            width: 1,
+          ),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
       ),
     );
   }
