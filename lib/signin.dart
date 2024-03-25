@@ -49,6 +49,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
   late TextEditingController passwordController;
   bool _isSignInHovered = false;
   bool _isBackHovered = false;
+  bool _isPasswordValid = true; // Flag to track password validation
 
   @override
   void initState() {
@@ -62,6 +63,17 @@ class _MyLoginPageState extends State<MyLoginPage> {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  // Function to validate password
+  bool _isPasswordCompliant(String password) {
+    if (password.length < 10) {
+      return false;
+    }
+    // Regular expressions to check for capital letter and digit
+    final RegExp hasCapitalLetter = RegExp(r'[A-Z]');
+    final RegExp hasDigit = RegExp(r'\d');
+    return hasCapitalLetter.hasMatch(password) && hasDigit.hasMatch(password);
   }
 
   @override
@@ -104,7 +116,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   ),
                 ),
               ),
-               const SizedBox(height: 20),
+              const SizedBox(height: 20),
               const Text(
                 'Welcome back you are just one step away to your feed',
                 style: TextStyle(
@@ -113,7 +125,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   color: Colors.black,
                 ),
               ),
-               const SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Color(0xFFAA1F24)),
@@ -150,7 +162,13 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       vertical: 12,
                       horizontal: 16,
                     ),
+                    errorText: _isPasswordValid ? null : 'Password must have at least 10 characters, one capital letter, and one digit.',
                   ),
+                  onChanged: (value) {
+                    setState(() {
+                      _isPasswordValid = _isPasswordCompliant(value);
+                    });
+                  },
                 ),
               ),
               const SizedBox(height: 20),
@@ -162,10 +180,12 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   onExit: (_) => setState(() => _isSignInHovered = false),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => CardioVistaApp()),
-                      );
+                      if (_isPasswordCompliant(passwordController.text)) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: _isSignInHovered ? Colors.black : Colors.white,
@@ -204,7 +224,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       backgroundColor: _isBackHovered ? Color(0xFFAA1F24) : Color.fromARGB(255, 240, 251, 255),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
-                        side: BorderSide(color: Color(0xFFAA1F24)),
+                        side: BorderSide(color: Color(0xFFAA1F24) ),
                       ),
                     ),
                     child: const Padding(
@@ -224,3 +244,4 @@ class _MyLoginPageState extends State<MyLoginPage> {
     );
   }
 }
+
