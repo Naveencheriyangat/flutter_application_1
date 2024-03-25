@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'Home.dart';
 
 void main() {
   runApp(PatientDetailsPage());
@@ -48,11 +49,21 @@ class PatientDetailsScreen extends StatelessWidget {
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.home, color: Colors.white),
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
+                        );
+                },
               ),
               IconButton(
                 icon: Icon(Icons.person, color: Colors.white),
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
+                        );
+                },
               ),
             ],
           ),
@@ -114,7 +125,10 @@ class _PatientDetailsFormState extends State<PatientDetailsForm> {
                       child: MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () { Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
+                        );
                             // Handle SAVE button press
                             // You can save the patient details here
                           },
@@ -160,7 +174,10 @@ class _PatientDetailsFormState extends State<PatientDetailsForm> {
                       child: MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () { Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
+                        );
                             // Handle BACK button press
                             // You can navigate back to the previous screen here
                           },
