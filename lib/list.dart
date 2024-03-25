@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'profile.dart';
+import 'Home.dart';
+
 
 void main() {
   runApp(PatientListPage());
@@ -47,11 +50,17 @@ class MyHomePage extends StatelessWidget {
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.home, color: Colors.white),
-                onPressed: () {},
+                onPressed: () { Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
+                        );},
               ),
               IconButton(
                 icon: Icon(Icons.person, color: Colors.white),
-                onPressed: () {},
+                onPressed: () { Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfilePage()),
+                        );},
               ),
             ],
           ),
@@ -101,29 +110,26 @@ class PatientList extends StatelessWidget {
     );
   }
 
-  Widget buildPatientButton(String name, String date, BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(20),
-      height: 150,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Color(0xFFAA1F24), width: 2),
-      ),
-      child: Material(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        child: InkWell(
+Widget buildPatientButton(String name, String date, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AnotherPage(name: name, date: date)),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => AnotherPage(name: name, date: date)),
-            );
-          },
-          splashColor: Color(0xFFAA1F24),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+          border: Border.all(color: Color(0xFFAA1F24), width: 2),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   name,
@@ -133,22 +139,50 @@ class PatientList extends StatelessWidget {
                     fontSize: 20,
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 5),
                 Text(
                   date,
                   style: TextStyle(
-                    color: Colors.grey, // Different color for date
+                    color: Colors.grey,
                     fontSize: 16,
                   ),
                 ),
               ],
             ),
-          ),
+            SizedBox(width: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Functionality for the 'Record' button if needed
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                  Color.fromARGB(255, 240, 251, 255),
+                ),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: BorderSide(color: Color(0xFFAA1F24), width: 2),
+                  ),
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                child: Text(
+                  'Record',
+                  style: TextStyle(fontSize: 14),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
+
+
+
 
 class AnotherPage extends StatelessWidget {
   final String name;
@@ -239,11 +273,21 @@ class AnotherPage extends StatelessWidget {
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.home, color: Colors.white),
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
+                        );
+                },
               ),
               IconButton(
                 icon: Icon(Icons.person, color: Colors.white),
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfilePage()),
+                        );
+                },
               ),
             ],
           ),
