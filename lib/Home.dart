@@ -63,7 +63,7 @@ class CardioVistaHomePage extends StatelessWidget {
                     border: Border.all(color: Color(0xFFAA1F24), width: 2), // Reduced border width
                   ),
                   child: Material(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 240, 251, 255),
                     borderRadius: BorderRadius.circular(20),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(20),
@@ -102,7 +102,7 @@ class CardioVistaHomePage extends StatelessWidget {
                     border: Border.all(color: Color(0xFFAA1F24), width: 2), // Reduced border width
                   ),
                   child: Material(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 240, 251, 255),
                     borderRadius: BorderRadius.circular(20),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(20),
@@ -132,7 +132,7 @@ class CardioVistaHomePage extends StatelessWidget {
                     border: Border.all(color: Color(0xFFAA1F24), width: 2), // Reduced border width
                   ),
                   child: Material(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 240, 251, 255),
                     borderRadius: BorderRadius.circular(20),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(20),
@@ -150,73 +150,49 @@ class CardioVistaHomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  // Navigate to record screen
-                },
-                child: Container(
-                  margin: EdgeInsets.all(20),
-                  height: 150,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.red, width: 2), // Reduced border width
-                  ),
-                  child: Material(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(20),
-                      onTap: () {
-                        // Handle tap functionality for record screen
-                      },
-                      splashColor: Color(0xFFAA1F24),
-                      child: Center(
-                        child: Text(
-                          'Record',
-                          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          topRight: Radius.circular(20.0),
-        ),
-        child: BottomAppBar(
-          shape: CircularNotchedRectangle(),
-          color: Colors.black,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.home, color: Colors.white),
-                onPressed: () { Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
-                        );
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.person, color: Colors.white),
-                onPressed: () {
-                   Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ProfilePage()),
-                        );
-                },
-              ),
-            ],
+     bottomNavigationBar: SizedBox(
+  height: 50, // Adjust the height as needed
+  child: ClipRRect(
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20.0),
+      topRight: Radius.circular(20.0),
+    ),
+    child: BottomAppBar(
+      elevation: 0, // Remove shadow
+      color: Colors.black,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          IconButton(
+            iconSize: 28, // Adjust icon size
+            icon: Icon(Icons.home, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CardioVistaApp()),
+              );
+            },
           ),
-        ),
+          IconButton(
+            iconSize: 28, // Adjust icon size
+            icon: Icon(Icons.person, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
+            },
+          ),
+        ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
+    ),
+  ),
+),
+floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+ );
   }
 }
