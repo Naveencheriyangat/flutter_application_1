@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'Home.dart';
+import 'profile.dart';
 
 void main() {
   runApp(PatientDetailsPage());
@@ -13,7 +14,7 @@ class PatientDetailsPage extends StatelessWidget {
       title: 'Cardio Vista',
       theme: ThemeData(
         primarySwatch: Colors.red,
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Color.fromARGB(255, 240, 251, 255),
       ),
       home: PatientDetailsScreen(),
     );
@@ -36,39 +37,44 @@ class PatientDetailsScreen extends StatelessWidget {
         shadowColor: Colors.black,
       ),
       body: PatientDetailsForm(),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          topRight: Radius.circular(20.0),
-        ),
-        child: BottomAppBar(
-          shape: CircularNotchedRectangle(),
-          color: Colors.black,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.home, color: Colors.white),
-                onPressed: () {
-                   Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
-                        );
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.person, color: Colors.white),
-                onPressed: () {
-                   Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
-                        );
-                },
-              ),
-            ],
+      bottomNavigationBar: SizedBox(
+  height: 50, // Adjust the height as needed
+  child: ClipRRect(
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20.0),
+      topRight: Radius.circular(20.0),
+    ),
+    child: BottomAppBar(
+      elevation: 0, // Remove shadow
+      color: Colors.black,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          IconButton(
+            iconSize: 28, // Adjust icon size
+            icon: Icon(Icons.home, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CardioVistaApp()),
+              );
+            },
           ),
-        ),
+          IconButton(
+            iconSize: 28, // Adjust icon size
+            icon: Icon(Icons.person, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
+            },
+          ),
+        ],
       ),
+    ),
+  ),
+),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
@@ -89,6 +95,14 @@ class _PatientDetailsFormState extends State<PatientDetailsForm> {
   TextEditingController palpitationController = TextEditingController();
   TextEditingController surgeryController = TextEditingController();
   TextEditingController otherDiseaseController = TextEditingController();
+
+  bool _isSignInHovered = false;
+  bool _isBackHovered = false;
+
+  bool _isPasswordCompliant(String password) {
+    // Your password compliance check logic goes here
+    return password.length >= 6;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,102 +130,87 @@ class _PatientDetailsFormState extends State<PatientDetailsForm> {
               _buildTextField('Surgery if any', surgeryController),
               _buildTextField('Any other disease', otherDiseaseController),
               SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: 50,
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: ElevatedButton(
-                          onPressed: () { Navigator.push(
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: MouseRegion(
+                  onEnter: (_) {
+                    if (!_isSignInHovered) {
+                      setState(() => _isSignInHovered = true);
+                    }
+                  },
+                  onExit: (_) {
+                    if (_isSignInHovered) {
+                      setState(() => _isSignInHovered = false);
+                    }
+                  },
+                  child: ElevatedButton(
+                    onPressed: () {
+                      var passwordController;
+                      if (_isPasswordCompliant(passwordController.text)) {
+                        Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => CardioVistaApp()),
                         );
-                            // Handle SAVE button press
-                            // You can save the patient details here
-                          },
-                          onHover: (isHovering) {
-                            // Handle hover effect
-                            // You can set state here to change button appearance on hover
-                          },
-                          child: Text(
-                            'SAVE',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.hovered)) {
-                                  return Color(0xFFAA1F24); // Change to red on hover
-                                }
-                                return Colors.white; // Default background color
-                              },
-                            ),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                side: BorderSide(color: Color(0x5F5949)),
-                              ),
-                            ),
-                          ),
-                        ),
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: _isSignInHovered ? Colors.black : Colors.white,
+                      backgroundColor: _isSignInHovered ? Color(0xFFAA1F24) : Color.fromARGB(255, 240, 251, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        side: BorderSide(color: Color(0xFFAA1F24)),
+                      ),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Text(
+                        'Sign In',
+                        style: TextStyle(color: Colors.black), // Set text color to black
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
-              SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: 50,
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: ElevatedButton(
-                          onPressed: () { Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
-                        );
-                            // Handle BACK button press
-                            // You can navigate back to the previous screen here
-                          },
-                          onHover: (isHovering) {
-                            // Handle hover effect
-                            // You can set state here to change button appearance on hover
-                          },
-                          child: Text(
-                            'BACK',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.hovered)) {
-                                  return Color(0xFFAA1F24); // Change to red on hover
-                                }
-                                return Colors.white; // Default background color
-                              },
-                            ),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                side: BorderSide(color: Color(0x5F5949)),
-                              ),
-                            ),
-                          ),
-                        ),
+              const SizedBox(height: 8),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: MouseRegion(
+                  onEnter: (_) {
+                    if (!_isBackHovered) {
+                      setState(() => _isBackHovered = true);
+                    }
+                  },
+                  onExit: (_) {
+                    if (_isBackHovered) {
+                      setState(() => _isBackHovered = false);
+                    }
+                  },
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CardioVistaApp()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: _isBackHovered ? Colors.black : Colors.white,
+                      backgroundColor: _isBackHovered ? Color(0xFFAA1F24) : Color.fromARGB(255, 240, 251, 255),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        side: BorderSide(color: Color(0xFFAA1F24) ),
+                      ),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Text(
+                        'Back',
+                        style: TextStyle(color: Colors.black), // Set text color to black
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
             ],
           ),
