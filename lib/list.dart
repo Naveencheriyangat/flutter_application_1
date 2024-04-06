@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'profile.dart';
 import 'Home.dart';
 
-
 void main() {
   runApp(PatientListPage());
 }
@@ -36,33 +35,42 @@ class MyHomePage extends StatelessWidget {
         elevation: 5,
         shadowColor: Colors.black,
       ),
-      body: PatientList(),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          topRight: Radius.circular(20.0),
-        ),
-        child: BottomAppBar(
-          shape: CircularNotchedRectangle(),
-          color: Colors.black,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.home, color: Colors.white),
-                onPressed: () { Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
-                        );},
-              ),
-              IconButton(
-                icon: Icon(Icons.person, color: Colors.white),
-                onPressed: () { Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ProfilePage()),
-                        );},
-              ),
-            ],
+      body: SingleChildScrollView(
+        child: PatientList(),
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 50,
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
+          child: BottomAppBar(
+            shape: CircularNotchedRectangle(),
+            color: Colors.black,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.home, color: Colors.white),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CardioVistaApp()),
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.person, color: Colors.white),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfilePage()),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -87,11 +95,11 @@ class PatientList extends StatelessWidget {
       ),
       child: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 20, top: 20), // Adjust left padding
+              padding: EdgeInsets.only(left: 20, top: 20),
               child: Text(
                 'Patient List',
                 style: TextStyle(
@@ -110,7 +118,7 @@ class PatientList extends StatelessWidget {
     );
   }
 
-Widget buildPatientButton(String name, String date, BuildContext context) {
+  Widget buildPatientButton(String name, String date, BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -120,6 +128,7 @@ Widget buildPatientButton(String name, String date, BuildContext context) {
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        height: 150,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -180,10 +189,6 @@ Widget buildPatientButton(String name, String date, BuildContext context) {
   }
 }
 
-
-
-
-
 class AnotherPage extends StatelessWidget {
   final String name;
   final String date;
@@ -204,92 +209,104 @@ class AnotherPage extends StatelessWidget {
         elevation: 5,
         shadowColor: Colors.black,
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'My Profile',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFFAA1F24),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'My Profile',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFAA1F24),
+                ),
               ),
-            ),
-            SizedBox(height: 20),
-            CircleAvatar(
-              radius: 60,
-              backgroundColor: Colors.grey[300], // Placeholder background color
-              child: Icon(
-                Icons.person,
-                size: 60,
-                color: Colors.grey, // Placeholder icon color
-              ),
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  name,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color:  Color(0xFFAA1F24),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(width: 20),
+                  CircleAvatar(
+                    radius: 60,
+                    backgroundColor: Colors.grey[300],
+                    child: Icon(
+                      Icons.person,
+                      size: 60,
+                      color: Colors.grey,
+                    ),
                   ),
+                  SizedBox(width: 20),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFAA1F24),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Email',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+              ProfileInfoField(label: 'Age', value: '22'),
+              ProfileInfoField(label: 'Weight', value: '0'),
+              ProfileInfoField(label: 'Height', value: '0'),
+              ProfileInfoField(label: 'Hyper tension/BP', value: 'No'),
+              ProfileInfoField(label: 'Sex', value: 'Female'),
+              ProfileInfoField(label: 'Chest pain', value: 'No'),
+              ProfileInfoField(label: 'Surgery', value: 'No'),
+              ProfileInfoField(label: 'Diseases', value: 'No'),
+              SizedBox(height: 100),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 50,
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
+          child: BottomAppBar(
+            shape: CircularNotchedRectangle(),
+            color: Colors.black,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.home, color: Colors.white),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CardioVistaApp()),
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.person, color: Colors.white),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfilePage()),
+                    );
+                  },
                 ),
               ],
             ),
-            SizedBox(height: 10),
-            Text(
-              'Email', // Placeholder for email, you need to replace this with the actual email
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            SizedBox(height: 20),
-            ProfileInfoField(label: 'Age', value: '22'),
-            ProfileInfoField(label: 'Weight', value: '0'),
-            ProfileInfoField(label: 'Height', value: '0'),
-            ProfileInfoField(label: 'Hyper tension/BP', value: 'No'),
-            ProfileInfoField(label: 'Sex', value: 'Female'),
-            ProfileInfoField(label: 'Chest pain', value: 'No'),
-            ProfileInfoField(label: 'Surgery', value: 'No'),
-            ProfileInfoField(label: 'Diseases', value: 'No'),
-          ],
-        ),
-      ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          topRight: Radius.circular(20.0),
-        ),
-        child: BottomAppBar(
-          shape: CircularNotchedRectangle(),
-          color: Colors.black,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.home, color: Colors.white),
-                onPressed: () {
-                   Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
-                        );
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.person, color: Colors.white),
-                onPressed: () {
-                   Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ProfilePage()),
-                        );
-                },
-              ),
-            ],
           ),
         ),
       ),
