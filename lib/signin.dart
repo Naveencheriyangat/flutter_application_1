@@ -173,65 +173,81 @@ class _MyLoginPageState extends State<MyLoginPage> {
               ),
               const SizedBox(height: 20),
               SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: MouseRegion(
-                  onEnter: (_) => setState(() => _isSignInHovered = true),
-                  onExit: (_) => setState(() => _isSignInHovered = false),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_isPasswordCompliant(passwordController.text)) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CardioVistaApp()),
-                        );
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: _isSignInHovered ? Colors.black : Colors.white,
-                      backgroundColor: _isSignInHovered ? Color(0xFFAA1F24) : Color.fromARGB(255, 240, 251, 255),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        side: BorderSide(color: Color(0xFFAA1F24)),
-                      ),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(12.0),
-                      child: Text(
-                        'Sign In',
-                        style: TextStyle(color: Colors.black), // Set text color to black
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: MouseRegion(
-                  onEnter: (_) => setState(() => _isBackHovered = true),
-                  onExit: (_) => setState(() => _isBackHovered = false),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Login()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: _isBackHovered ? Colors.black : Colors.white,
-                      backgroundColor: _isBackHovered ? Color(0xFFAA1F24) : Color.fromARGB(255, 240, 251, 255),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        side: BorderSide(color: Color(0xFFAA1F24) ),
-                      ),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(12.0),
-                      child: Text(
-                        'Back',
-                        style: TextStyle(color: Colors.black), // Set text color to black
+  width: double.infinity,
+  height: 50,
+  child: MouseRegion(
+    onEnter: (_) {
+      if (!_isSignInHovered) {
+        setState(() => _isSignInHovered = true);
+      }
+    },
+    onExit: (_) {
+      if (_isSignInHovered) {
+        setState(() => _isSignInHovered = false);
+      }
+    },
+    child: ElevatedButton(
+      onPressed: () {
+        if (_isPasswordCompliant(passwordController.text)) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CardioVistaApp()),
+          );
+        }
+      },
+      style: ElevatedButton.styleFrom(
+        foregroundColor: _isSignInHovered ? Colors.black : Colors.white,
+        backgroundColor: _isSignInHovered ? Color(0xFFAA1F24) : Color.fromARGB(255, 240, 251, 255),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(color: Color(0xFFAA1F24)),
+        ),
+      ),
+      child: const Padding(
+        padding: EdgeInsets.all(12.0),
+        child: Text(
+          'Sign In',
+          style: TextStyle(color: Colors.black), // Set text color to black
+        ),
+      ),
+    ),
+  ),
+),
+const SizedBox(height: 8),
+SizedBox(
+  width: double.infinity,
+  height: 50,
+  child: MouseRegion(
+    onEnter: (_) {
+      if (!_isBackHovered) {
+        setState(() => _isBackHovered = true);
+      }
+    },
+    onExit: (_) {
+      if (_isBackHovered) {
+        setState(() => _isBackHovered = false);
+      }
+    },
+    child: ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Login()),
+        );
+      },
+      style: ElevatedButton.styleFrom(
+        foregroundColor: _isBackHovered ? Colors.black : Colors.white,
+        backgroundColor: _isBackHovered ? Color(0xFFAA1F24) : Color.fromARGB(255, 240, 251, 255),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(color: Color(0xFFAA1F24) ),
+        ),
+      ),
+      child: const Padding(
+        padding: EdgeInsets.all(12.0),
+        child: Text(
+          'Back',
+          style: TextStyle(color: Colors.black), // Set text color to black
                       ),
                     ),
                   ),
